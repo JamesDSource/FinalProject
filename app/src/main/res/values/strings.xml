@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Graffiti</string>
+    <string name="capture">Capture</string>
+    <string name="take_from_gallery">Take from Gallery</string>
+</resources>
