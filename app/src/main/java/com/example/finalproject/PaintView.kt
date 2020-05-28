@@ -2,19 +2,17 @@ package com.example.finalproject
 
 import android.app.ActionBar
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
+import android.graphics.*
 import android.view.View
 import android.view.ViewGroup.LayoutParams
-import android.graphics.Path
 import android.view.MotionEvent
 
-class PaintView(context: Context?) : View(context) {
+class PaintView(context: Context?, image: Bitmap?) : View(context) {
 
     val path: Path = Path()
     val paint: Paint = Paint()
     val params: LayoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+    val background = image
 
     init {
         paint.isAntiAlias = true
@@ -44,6 +42,9 @@ class PaintView(context: Context?) : View(context) {
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
+        if (background != null) {
+            canvas?.drawBitmap(background, 10f, 10f, null)
+        }
         canvas?.drawPath(path, paint)
     }
 }

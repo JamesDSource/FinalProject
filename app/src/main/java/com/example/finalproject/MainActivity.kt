@@ -2,10 +2,11 @@ package com.example.finalproject
 
 import android.content.Intent
 import android.graphics.Bitmap
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.ByteArrayOutputStream
 
 class MainActivity : AppCompatActivity() {
     private val REQUESTCODE = 1000
@@ -23,7 +24,16 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == REQUESTCODE) {
             var bitmap: Bitmap = data?.extras?.get("data") as Bitmap
-            val intent: Intent = Intent(this, PaintCanvas::class.java)
+            //Convert to byte array
+
+            //Convert to byte array
+            val stream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+            val byteArray: ByteArray = stream.toByteArray()
+
+            val intent: Intent = Intent(this, PaintCanvas::class.java) .apply {
+                putExtra("Image", byteArray)
+            }
             startActivity(intent)
         }
     }
