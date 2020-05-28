@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.DisplayMetrics
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.ByteArrayOutputStream
@@ -23,8 +24,16 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == REQUESTCODE) {
+            val displayMetrics = DisplayMetrics()
+            windowManager.defaultDisplay.getMetrics(displayMetrics)
+            val height = displayMetrics.heightPixels
+            val width = displayMetrics.widthPixels
+            val asp: Float = width/(height.toFloat())
+            val img_width = width
+            val img_height = (width/asp).toInt()
+
             var bitmap: Bitmap = data?.extras?.get("data") as Bitmap
-            //Convert to byte array
+            bitmap = Bitmap.createScaledBitmap(bitmap, img_width, img_height, true)
 
             //Convert to byte array
             val stream = ByteArrayOutputStream()

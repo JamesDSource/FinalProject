@@ -3,6 +3,7 @@ package com.example.finalproject
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.DisplayMetrics
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -10,6 +11,7 @@ class PaintCanvas : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         val bmp: Bitmap
         val byteArray = intent.getByteArrayExtra("Image")

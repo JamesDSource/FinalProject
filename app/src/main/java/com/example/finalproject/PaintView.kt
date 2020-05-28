@@ -43,7 +43,7 @@ class PaintView(context: Context?, image: Bitmap?) : View(context) {
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         if (background != null) {
-            canvas?.drawBitmap(background, 10f, 10f, null)
+            canvas?.drawBitmap(background, 0f, 0f, null)
         }
         canvas?.drawPath(path, paint)
     }
